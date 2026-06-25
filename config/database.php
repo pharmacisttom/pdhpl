@@ -3,10 +3,10 @@
 
 class Database {
     // --- APP DB (KPI Config & Snapshots) ---
-    private $app_host = "192.168.111.240";
+    private $app_host;
     private $app_db   = "kpi";
-    private $app_user = "tomwebdbnavicat";
-    private $app_pass = "@TOM\$NavicatDB10832";
+    private $app_user;
+    private $app_pass;
     
     // --- HIS DB (Himpro) ---
     private $his_host = "192.168.111.251";
@@ -16,6 +16,24 @@ class Database {
     
     public $app_conn;
     public $his_conn;
+
+    public function __construct() {
+        $server_ips = ['192.168.111.240'];
+        $current_host = $_SERVER['HTTP_HOST'] ?? '';
+        $current_server_addr = $_SERVER['SERVER_ADDR'] ?? ($_SERVER['LOCAL_ADDR'] ?? '');
+        $is_server = in_array($current_server_addr, $server_ips, true)
+            || strpos($current_host, '192.168.111.240') === 0;
+
+        if ($is_server) {
+            $this->app_host = 'localhost';
+            $this->app_user = 'webtomdb';
+            $this->app_pass = '@TOM$DataBase10832';
+        } else {
+            $this->app_host = '192.168.111.240';
+            $this->app_user = 'tomwebdbnavicat';
+            $this->app_pass = '@TOM$NavicatDB10832';
+        }
+    }
 
     // เชื่อมต่อฐานข้อมูล KPI (APP DB)
     public function getAppConnection() {
