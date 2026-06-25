@@ -4,7 +4,7 @@
 class Database {
     // --- APP DB (KPI Config & Snapshots) ---
     private $app_host;
-    private $app_db   = "kpi";
+    private $app_db   = "pdhpl";
     private $app_user;
     private $app_pass;
     
