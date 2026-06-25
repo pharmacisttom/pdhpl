@@ -1,0 +1,15 @@
+/kpi2569
+│
+├── /config
+│   └── database.php         # ไฟล์ตั้งค่าและเชื่อมต่อฐานข้อมูล (OPD & HOS)
+│
+├── /api
+│   └── get_kpi_herb.php     # (ตัวอย่าง) API ดึงข้อมูล KPI มูลค่ายาสมุนไพร ส่งออกเป็น JSON
+│
+├── /assets
+│   ├── /css
+│   │   └── style.css        # ปรับแต่งความสวยงามเพิ่มเติม (Custom CSS)
+│   └── /js
+│       └── dashboard.js     # ไฟล์เขียน JS ดึง API และวาดกราฟ (Chart.js)
+│
+└── index.php                # หน้า Dashboard หลัก (UI)

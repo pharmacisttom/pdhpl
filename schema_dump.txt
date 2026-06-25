@@ -1,0 +1,99 @@
+=== Structure of table 'hos.insclasses' ===
+pcucode              | varchar(10)     | NO   |      | NULL       | 
+code                 | char(3)         | NO   | PRI  |            | 
+Name                 | varchar(50)     | YES  | MUL  | NULL       | 
+billok               | smallint(6)     | NO   |      | 0          | 
+typepaid             | varchar(10)     | NO   |      |            | 
+due                  | double          | YES  |      | NULL       | 
+welcode              | varchar(4)      | YES  | MUL  |            | 
+multi_welcode        | text            | YES  |      | NULL       | 
+DrgCode              | varchar(4)      | YES  |      | NULL       | 
+nhso_code            | char(4)         | YES  | MUL  | NULL       | 
+inout                | smallint(1)     | YES  |      | 0          | 
+warnlimitcost        | double(8,2)     | NO   |      | 0.00       | 
+limitipd             | double          | YES  |      | 0          | 
+code18               | varchar(5)      | NO   | MUL  | NULL       | 
+subclass             | varchar(5)      | YES  | MUL  | NULL       | 
+gr_subclass          | varchar(200)    | YES  | MUL  | NULL       | 
+multi_subclass       | text            | YES  |      | NULL       | 
+no_use               | int(1)          | YES  |      | 0          | 
+chk_note             | int(1)          | YES  |      | 0          | 
+note                 | varchar(250)    | YES  |      | NULL       | 
+encrypted            | int(1)          | NO   |      | NULL       | 
+sendamp              | int(11)         | NO   |      | NULL       | 
+d_sendamp            | date            | YES  |      | NULL       | 
+sendpro              | int(11)         | NO   |      | NULL       | 
+d_sendpro            | date            | YES  |      | NULL       | 
+acc_no               | double(10,4)    | YES  | MUL  | NULL       | 
+acc_opd              | double(10,4)    | YES  | MUL  | NULL       | 
+std_code             | varchar(5)      | YES  | MUL  | NULL       | 
+dis_price            | int(1)          | NO   |      | NULL       | 
+date_update          | date            | YES  |      | NULL       | 
+CodeGL14OPD          | varchar(20)     | YES  | MUL  | NULL       | 
+CodeGL14IPD          | varchar(20)     | YES  | MUL  | NULL       | 
+inclass_pri          | varchar(4)      | YES  |      | NULL       | 
+
+=== Structure of table 'hos.itemlist' ===
+pcucode              | varchar(10)     | NO   |      | NULL       | 
+itemcode             | varchar(50)     | NO   | PRI  |            | 
+Name                 | varchar(70)     | YES  | MUL  | NULL       | 
+sname                | varchar(50)     | NO   |      |            | 
+support              | smallint(5)     | NO   |      | 0          | 
+pr_notsupport        | double          | YES  |      | 0          | 
+ItemType             | varchar(10)     | NO   | MUL  | 0          | 
+Spec                 | varchar(20)     | YES  |      | NULL       | 
+Model                | varchar(20)     | YES  |      | NULL       | 
+UnitName             | varchar(20)     | YES  |      | NULL       | 
+UnitPrice            | double          | YES  |      | 0          | 
+unitPack             | double          | YES  |      | 0          | 
+UnitPackPrice        | double          | NO   |      | 0          | 
+maxpackprice         | double          | NO   |      | 0          | 
+minpackprice         | double          | NO   |      | 0          | 
+descrip1             | varchar(250)    | NO   |      |            | 
+descrip2             | varchar(250)    | NO   |      |            | 
+descrip3             | varchar(250)    | YES  |      | NULL       | 
+descrip4             | varchar(250)    | YES  |      | NULL       | 
+pricegroup           | varchar(20)     | YES  | MUL  | NULL       | 
+pricegroupipd        | varchar(20)     | YES  | MUL  | NULL       | 
+datepack             | date            | YES  |      | NULL       | 
+dateexp              | date            | YES  |      | NULL       | 
+lotno                | varchar(20)     | NO   | MUL  |            | 
+high_alert_drug      | smallint(6)     | YES  |      | 0          | 
+druggroup            | smallint(6)     | NO   | MUL  | 0          | 
+cost_per_unit        | double(10,2)    | YES  |      | 0.00       | 
+item_std_code        | varchar(20)     | YES  | MUL  |            | 
+tmt_code             | varchar(15)     | YES  | MUL  | NULL       | 
+typeadp              | int(1)          | NO   | MUL  | NULL       | 
+ned_cause            | varchar(2)      | YES  | MUL  | NULL       | 
+tmt_name             | varchar(250)    | YES  |      | NULL       | 
+ec2008_code          | varchar(20)     | YES  |      |            | 
+ec2008_code_ipd      | varchar(20)     | YES  |      | NULL       | 
+ec2008_code_home     | varchar(20)     | YES  |      | NULL       | 
+epicode              | varchar(10)     | YES  |      |            | 
+stockmax             | double          | YES  |      | 0          | 
+stockmin             | double          | YES  |      | 0          | 
+stock_amount         | double          | YES  |      | 0          | 
+noprint              | int(1)          | NO   |      | 0          | 
+no_use               | int(1)          | NO   | MUL  | NULL       | 
+out_drg              | int(1)          | YES  |      | 0          | 
+ostep                | int(1)          | NO   |      | NULL       | 
+limitperorder        | double          | YES  |      | 0          | 
+cscd_type            | int(1)          | YES  | MUL  | NULL       | 
+nocost               | int(1)          | YES  |      | NULL       | 
+instument            | int(11)         | YES  | MUL  | NULL       | 
+dgdsfnm              | varchar(255)    | YES  |      | NULL       | 
+strength             | varchar(255)    | YES  |      | NULL       | 
+encrypted            | int(1)          | NO   |      | NULL       | 
+sendamp              | int(11)         | NO   |      | NULL       | 
+d_sendamp            | date            | YES  |      | NULL       | 
+sendpro              | int(11)         | NO   |      | NULL       | 
+d_sendpro            | date            | YES  |      | NULL       | 
+date_update          | date            | YES  |      | NULL       | 
+unit                 | varchar(250)    | YES  |      | NULL       | 
+dosage_form          | varchar(50)     | YES  |      | NULL       | 
+std_code             | varchar(50)     | YES  | MUL  | NULL       | 
+cycle                | int(11)         | YES  |      | 0          | 
+cwarn                | int(11)         | YES  |      | 0          | 
+claim_ontop          | varchar(15)     | YES  |      | NULL       | 
+adp_code             | varchar(15)     | YES  | MUL  | NULL       | 
+
