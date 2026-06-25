@@ -15,23 +15,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $database = new Database();
-    $db = $database->getAppConnection();
+    // เปลี่ยนไปใช้ HIS Connection เพื่อเข้าถึง hosdata.user
+    $db = $database->getHisConnection();
 
     try {
-        $query = "SELECT id, username, password, full_name, role FROM users WHERE username = :username LIMIT 1";
+        $query = "SELECT userid as id, userlogin, username as full_name, groupcode as role, password, npass, netpass 
+                  FROM hosdata.user 
+                  WHERE userlogin = :username LIMIT 1";
         $stmt = $db->prepare($query);
         $stmt->bindParam(":username", $username);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $hashed_pass = md5($password);
             
-            // ตรวจสอบรหัสผ่านแบบเข้ารหัส bcrypt หรืออนุญาตให้ใช้ admin123 ชั่วคราวเพื่อเข้าสู่ระบบครั้งแรก
-            if (password_verify($password, $row['password']) || ($username === 'admin' && $password === 'admin123')) {
+            // ตรวจสอบรหัสผ่าน: plain text หรือ md5 ที่ตรงกับ password, npass, netpass
+            if ($password === $row['password'] || 
+                $hashed_pass === $row['password'] || 
+                $hashed_pass === $row['npass'] || 
+                $hashed_pass === $row['netpass'] || 
+                ($username === 'admin' && $password === 'admin123')) {
+                
+                // แปลงชื่อจาก TIS-620 เป็น UTF-8
+                $full_name = @iconv("TIS-620", "UTF-8//IGNORE", $row['full_name']);
+                if (!$full_name) {
+                    $full_name = @iconv("Windows-874", "UTF-8//IGNORE", $row['full_name']);
+                }
+                $full_name = $full_name ?: $row['full_name'];
+
                 // สร้าง Session 
                 $_SESSION['kpi_user_id'] = $row['id'];
-                $_SESSION['kpi_username'] = $row['username'];
-                $_SESSION['kpi_full_name'] = $row['full_name'];
+                $_SESSION['kpi_username'] = $row['userlogin'];
+                $_SESSION['kpi_full_name'] = $full_name;
                 $_SESSION['kpi_role'] = $row['role'];
 
                 echo json_encode(["status" => "success", "message" => "Login successful"]);
